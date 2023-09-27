@@ -3,6 +3,8 @@ project('liblogger', 'cpp', version: 'master')
 include = include_directories('include')
 
 liblogger = library('liblogger', [
+    'src/liblogger/logger.cc',
+    'src/liblogger/severity.cc'
   ], include_directories: include)
 
 main = executable('main.exe', [
