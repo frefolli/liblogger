@@ -7,9 +7,11 @@
 #include <liblogger/logger.hh>
 
 class LoggerChanneled : public Logger {
+    protected:
+        Channel* channel;
     public:
-        LoggerChannel(Severity level, Channel channel);
-        ~LoggerChannel();
+        LoggerChanneled(Severity level, Channel* channel);
+        ~LoggerChanneled();
 
         void log(Severity severity, std::string message);
 };

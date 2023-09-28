@@ -1,26 +1,21 @@
-#include <liblogger/logger.hh>
+#include <liblogger/logger_multichannel.hh>
+#include <liblogger/channel_ostream.hh>
 #include <liblogger/severity.hh>
+#include <iostream>
 
 // ALL, TRACE, DEBUG, INFO, WARN, ERROR, FATAL, OFF
 
-std::string craftForLevel(Severity severity) {
-    std::ostringstream out ("");
-    out << "message on " << severity << " level";
-    return out.str();
-}
-
-void log(Logger* logger, Severity severity) {
-    logger->log(severity, craftForLevel(severity));
-}
 
 int main(int argc, char**args) {
-    Logger logger (DEBUG);
-    log(&logger, ALL);
-    log(&logger, TRACE);
-    log(&logger, DEBUG);
-    log(&logger, INFO);
-    log(&logger, WARN);
-    log(&logger, ERROR);
-    log(&logger, FATAL);
-    log(&logger, OFF);
+    LoggerMultiChannel logger (DEBUG, {
+        new ChannelOstream(),
+        new ChannelOstream(),
+        new ChannelOstream("/tmp/qualcosa.1.log"),
+        new ChannelOstream("/tmp/qualcosa.2.log")
+    });
+    std::string line;
+    while(true) {
+        std::getline(std::cin, line);
+        logger.log(TRACE, line);
+    }
 }

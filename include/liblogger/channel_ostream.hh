@@ -7,9 +7,10 @@
 
 class ChannelOstream : public Channel {
     protected:
-        std::ostream out;
+        std::ostream* out;
     public:
-        ChannelOstream(std::ostream out);
+        ChannelOstream();
+        ChannelOstream(std::string filepath);
         ~ChannelOstream();
         ChannelOstream& operator<<(std::string line);
 };
