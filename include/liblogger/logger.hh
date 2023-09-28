@@ -10,9 +10,9 @@ class Logger {
         Severity level;
     public:
         Logger(Severity level);
-        ~Logger();
+        virtual ~Logger();
 
-        void log(Severity severity, std::string message);
+        virtual void log(Severity severity, std::string message) = 0;
 
         template<typename Serializable>
         void log(Severity severity, Serializable serializable) {
