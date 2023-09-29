@@ -1,0 +1,4 @@
+[wrap-git]
+directory = libajax.git
+url = git@github.com:frefolli/libajax.git
+revision = master
